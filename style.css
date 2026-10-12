@@ -1,0 +1,333 @@
+/* ===== 基本設定 ===== */
+:root {
+  --deep: #023e73;
+  --ocean: #0466c8;
+  --sky: #48cae4;
+  --foam: #e6f7fb;
+  --sand: #fff8e7;
+  --text: #0b2540;
+  --muted: #4a6580;
+  --warn-bg: #fff4d6;
+  --warn-border: #f0b429;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  line-height: 1.75;
+  color: var(--text);
+  background: linear-gradient(180deg, #caf0f8 0%, #90e0ef 35%, #00b4d8 70%, #0077b6 100%) fixed;
+  min-height: 100vh;
+}
+
+/* ===== ヘッダー ===== */
+.hero {
+  position: relative;
+  padding: 48px 20px 72px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(160deg, var(--deep), var(--ocean) 60%, var(--sky));
+  overflow: hidden;
+}
+
+/* 波の装飾 */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 40px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q150 0 300 20 T600 20 T900 20 T1200 20 V40 H0 Z' fill='%23caf0f8'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+}
+
+.hero-label {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  letter-spacing: 0.05em;
+}
+
+.hero-lead {
+  margin: 12px auto 0;
+  max-width: 32em;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* ===== レイアウト ===== */
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 16px 40px;
+}
+
+.card {
+  margin-bottom: 20px;
+  padding: 24px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(2, 62, 115, 0.15);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+  color: var(--deep);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--deep);
+}
+
+/* ===== 注意書き ===== */
+.notice {
+  margin: 16px 0 20px;
+  padding: 14px 16px;
+  background: var(--warn-bg);
+  border-left: 5px solid var(--warn-border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+.notice p {
+  margin: 4px 0 0;
+}
+
+.notice-card {
+  border-top: 5px solid var(--warn-border);
+}
+
+.tips {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.92rem;
+}
+
+.tips li + li {
+  margin-top: 6px;
+}
+
+/* ===== ボタン ===== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(90deg, var(--ocean), var(--sky));
+  box-shadow: 0 4px 12px rgba(4, 102, 200, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(4, 102, 200, 0.45);
+}
+
+.btn-ghost {
+  margin-top: 16px;
+  color: var(--ocean);
+  background: transparent;
+  border: 2px solid var(--sky);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn:focus-visible,
+.choice:focus-visible {
+  outline: 3px solid var(--warn-border);
+  outline-offset: 2px;
+}
+
+/* ===== 質問 ===== */
+.progress {
+  height: 8px;
+  margin-bottom: 16px;
+  background: var(--foam);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--ocean), var(--sky));
+  transition: width 0.3s;
+}
+
+.q-count {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--ocean);
+}
+
+.choices {
+  display: grid;
+  gap: 12px;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  font: inherit;
+  color: var(--text);
+  background: var(--foam);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.choice:hover {
+  background: #d2f1f8;
+  border-color: var(--sky);
+}
+
+.choice .icon {
+  flex-shrink: 0;
+  font-size: 1.6rem;
+}
+
+.choice small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* ===== 結果 ===== */
+.result-summary {
+  margin: 0;
+  color: var(--muted);
+}
+
+.spot {
+  position: relative;
+}
+
+.spot-rank {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--ocean);
+  border-radius: 999px;
+}
+
+.spot-rank.sub {
+  background: var(--sky);
+}
+
+.spot-island {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  color: var(--deep);
+  background: var(--foam);
+  border-radius: 999px;
+}
+
+.spot-desc {
+  margin: 0 0 12px;
+}
+
+.spot-point {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  background: var(--sand);
+  border-radius: 8px;
+}
+
+.spot-source {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.spot-source a {
+  color: var(--ocean);
+}
+
+.actions {
+  margin-top: 8px;
+}
+
+/* ===== フッター ===== */
+.footer {
+  padding: 24px 16px 32px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #fff;
+  background: var(--deep);
+}
+
+.footer p {
+  max-width: 640px;
+  margin: 4px auto;
+}
+
+.footer a {
+  color: var(--sky);
+}
+
+/* ===== スマホ ===== */
+@media (max-width: 480px) {
+  .hero {
+    padding: 36px 16px 60px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+}
